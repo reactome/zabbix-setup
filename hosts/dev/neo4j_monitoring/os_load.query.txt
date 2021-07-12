@@ -1,0 +1,8 @@
+CALL dbms.queryJmx('java.lang:type=OperatingSystem')
+    YIELD attributes
+    WITH
+        attributes.SystemLoadAverage as SystemLoad,
+        attributes.ProcessCpuLoad as ProcessLoad
+    RETURN
+        SystemLoad.value as systemLoad,
+        ProcessLoad.value as processLoad ;

@@ -1,0 +1,17 @@
+CALL dbms.queryJmx('org.neo4j:instance=kernel#0,name=Page cache')
+    YIELD attributes
+    WITH
+        attributes.Faults.value as faults,
+        attributes.EvictionExceptions.value as evictionExceptions,
+        attributes.BytesWritten.value as bytesWritten,
+        attributes.Flushes.value as flushes,
+        attributes.UsageRatio.value as usageRatio,
+        attributes.Evictions.value as evictions,
+        attributes.FileUnmappings.value as fileUnmappings,
+        attributes.BytesRead.value as bytesRead,
+        attributes.FileMappings.value as fileMappings,
+        attributes.HitRatio.value as hitRatio
+    RETURN
+        hitRatio, bytesRead, fileMappings, fileUnmappings,
+        flushes, usageRatio, bytesWritten,
+        faults, evictions, evictionExceptions;
