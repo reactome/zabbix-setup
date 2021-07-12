@@ -21,6 +21,33 @@ export CATALINA_OPTS="-Xms5120M -Xmx10240M -XX:+HeapDumpOnOutOfMemoryError -XX:H
  -Djavax.net.ssl.keyStore=/usr/share/tomcat7/keystore/prod.keystore -Djavax.net.ssl.keyStorePassword=$ReactomeJMXKeystorePassword -Djavax.net.ssl.keyStoreType=PKCS12 \
  -Djavax.net.ssl.trustStore=/usr/share/tomcat7/keystore/prod.truststore -Djavax.net.ssl.trustStorePassword=$ReactomeJMXTrustStorePassword -Djavax.net.ssl.trustStoreType=PKCS12 \
  -Dcom.sun.management.jmxremote.ssl.need.client.auth=false"
+
+# Not secured, not authenticated, only use for testing basic config (w.r.t. ports, hostname, etc...)
+#export CATALINA_OPTS="-Xms5120M -Xmx10240M \
+# -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=13579 -Dcom.sun.management.jmxremote.rmi.port=13578 \
+# -Djava.rmi.server.hostname=172.31.38.235 \
+# -Dcom.sun.management.jmxremote.authenticate=false \
+# -Dcom.sun.management.jmxremote.ssl=false"
+
+# Authentication, but no SSL
+#export CATALINA_OPTS="-Xms5120M -Xmx10240M \
+# -Djava.rmi.server.hostname=172.31.38.235 \
+# -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=13579 -Dcom.sun.management.jmxremote.rmi.port=13578 \
+# -Dcom.sun.management.jmxremote.authenticate=true \
+# -Dcom.sun.management.jmxremote.password.file=/usr/share/tomcat7/jmxconfig/jmxremote.password -Dcom.sun.management.jmxremote.access.file=/usr/share/tomcat7/jmxconfig/jmxremote.access \
+# -Dcom.sun.management.jmxremote.ssl=false"
+
+# SSL but no Authentication
+#export CATALINA_OPTS="-Xms5120M -Xmx10240M \
+# -Djava.rmi.server.hostname=172.31.38.235 \
+# -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=13579 -Dcom.sun.management.jmxremote.rmi.port=13578 \
+# -Dcom.sun.management.jmxremote.authenticate=false \
+# -Dcom.sun.management.jmxremote.ssl=true \
+# -Dcom.sun.management.jmxremote.registry.ssl=false \
+# -Dcom.sun.management.jmxremote.ssl.need.client.auth=false \
+# -Djavax.net.ssl.keyStore=/usr/share/tomcat7/keystore/ReactomeDevKeyStore.key -Djavax.net.ssl.keyStorePassword=$ReactomeJMXKeystorePassword -Djavax.net.ssl.keyStoreType=pkcs12 \
+# -Djavax.net.ssl.trustStore=/usr/share/tomcat7/keystore/ReactomeDevTrustStore.key -Djavax.net.ssl.trustStorePassword=$ReactomeJMXTrustStorePassword -Djavax.net.ssl.trustStoreType=pkcs12"
+
 ```
 
 You can read more about enabling JMX remote here: https://tomcat.apache.org/tomcat-7.0-doc/monitoring.html#Enabling_JMX_Remote
