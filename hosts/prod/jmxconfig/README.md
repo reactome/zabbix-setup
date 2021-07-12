@@ -26,3 +26,5 @@ export CATALINA_OPTS="-Xms5120M -Xmx10240M -XX:+HeapDumpOnOutOfMemoryError -XX:H
 You can read more about enabling JMX remote here: https://tomcat.apache.org/tomcat-7.0-doc/monitoring.html#Enabling_JMX_Remote
 
 You will also need to generate keys and certificates for JMX. Self-signed certificates should be fine. There are many guides on how to do this, here is one: https://docs.oracle.com/javadb/10.10.1.2/adminguide/cadminsslkeys.html#cadminsslkeys
+
+...You might have noticed that `-Dcom.sun.management.jmxremote.ssl=false` and `-Dcom.sun.management.jmxremote.registry.ssl=false` and `-Dcom.sun.management.jmxremote.ssl.need.client.auth=false` in the command above. I've not had much luck enabling SSL for JMX. From what I can tell, it might be a problem with Tomcat. Upgrading tomcat, or (even better) moving to a new version of Tomcat might resolve this problem.
