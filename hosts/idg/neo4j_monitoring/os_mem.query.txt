@@ -1,0 +1,19 @@
+CALL dbms.queryJmx("java.lang:type=OperatingSystem")
+        YIELD attributes
+        WITH
+            attributes.OpenFileDescriptorCount.value as fdOpen,
+            attributes.MaxFileDescriptorCount.value as fdMax,
+            attributes.FreePhysicalMemorySize.value as physFree,
+            attributes.TotalPhysicalMemorySize.value as physTotal,
+            attributes.CommittedVirtualMemorySize.value as virtCommitted,
+            attributes.FreeSwapSpaceSize.value as swapFree,
+            attributes.TotalSwapSpaceSize.value as swapTotal,
+            attributes.Name.value as osName,
+            attributes.Version.value as osVersion,
+            attributes.Arch.value as arch,
+            attributes.AvailableProcessors.value as processors
+        RETURN
+            fdOpen, fdMax,
+            physFree, physTotal,
+            virtCommitted, swapFree, swapTotal,
+            osName, osVersion, arch, processors;
